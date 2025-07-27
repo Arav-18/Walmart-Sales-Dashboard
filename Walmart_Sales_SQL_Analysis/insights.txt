@@ -1,0 +1,41 @@
+-- 1. Total Sales by Store
+SELECT Store, SUM(Weekly_Sales) AS Total_Sales
+FROM sales
+GROUP BY Store
+ORDER BY Total_Sales DESC;
+
+-- 2. Sales Over Time (Trend)
+SELECT Date, SUM(Weekly_Sales) AS Sales
+FROM sales
+GROUP BY Date
+ORDER BY Date;
+
+-- 3. Sales by Month (Seasonality)
+SELECT SUBSTR(Date, 1, 7) AS Month, SUM(Weekly_Sales) AS Monthly_Sales
+FROM sales
+GROUP BY Month
+ORDER BY Month;
+
+-- 4. Avg Sales by Department
+SELECT Dept, AVG(Weekly_Sales) AS Avg_Weekly_Sales
+FROM sales
+GROUP BY Dept
+ORDER BY Avg_Weekly_Sales DESC;
+
+-- 5. Holiday vs Non-Holiday Sales
+SELECT IsHoliday, AVG(Weekly_Sales) AS Avg_Sales
+FROM sales
+GROUP BY IsHoliday;
+
+-- 6. Store Type and Sales
+SELECT s.Store, st.Type, SUM(s.Weekly_Sales) AS Total_Sales
+FROM sales s
+JOIN stores st ON s.Store = st.Store
+GROUP BY s.Store
+ORDER BY Total_Sales DESC;
+
+-- 7. Weekly Sales vs Temperature
+SELECT f.Temperature, s.Weekly_Sales
+FROM sales s
+JOIN features f ON s.Store = f.Store AND s.Date = f.Date
+LIMIT 100;
