@@ -6,7 +6,7 @@ st.set_page_config(page_title="Walmart Sales Dashboard", layout="wide")
 
 st.title(" Walmart Sales Data Dashboard")
 
-# Load CSVs
+# Load CSVs for file
 sales_by_store = pd.read_csv("output_total_sales_by_store.csv")
 monthly_sales = pd.read_csv("output_monthly_sales.csv")
 
